@@ -9,13 +9,10 @@
   --text-color: #fff;
 
   /* Main color of your brand */
-  --color-primary: #f213a4;
+  --color-primary: #19A8D6;
 
   /* Secondary color of your brand */
-  --color-secondary: #418dff;
-
-  /* Which font you want to use */
-  --font: "Inter", sans-serif;
+  --color-secondary: #19A8D6;
 
   /* Color of the border around items */
   --border-color: rgba(255, 255, 255, 0.5);
@@ -27,12 +24,12 @@
 
 body {
   background: var(--background-color);
-  font-family: var(--font);
   color: var(--text-color);
 
   display: flex;
   margin: 0;
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* Box sizing rules */
@@ -40,4 +37,8 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+iframe {
+  border: none;
 }

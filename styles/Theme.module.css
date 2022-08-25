@@ -1,5 +1,5 @@
 .container {
-  margin-top: 96px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 24px;
+  padding: 25px 25px;
   min-height: 720px;
   max-width: 95vw;
   gap: 2%;
@@ -32,14 +32,21 @@
 .infoSide {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   width: 45%;
   height: 100%;
+  max-width: 600px;
+  padding: 25px;
+}
+
+.infoTitle {
+  font-size: 2rem;
 }
 
 .description {
   opacity: 0.7;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 50px;
 }
 
 .imageSide {
@@ -48,8 +55,8 @@
 }
 
 .image {
-  width: 85%;
   border-radius: 16px;
+  padding: 25px;
 }
 
 .mainButton {
@@ -64,11 +71,10 @@
   outline: 2px solid transparent;
   outline-offset: 2px;
   line-height: 1.2;
-  font-weight: 600;
+  font-weight: 400;
   transition-property: background-color, border-color, color, fill, stroke,
     opacity, box-shadow, transform;
   transition-duration: 200ms;
-  height: 3rem;
   min-width: 3rem;
   font-size: 1rem;
   background: #e5e5ea;
@@ -78,10 +84,14 @@
     var(--color-secondary) 101.52%
   );
   color: #fff;
-  width: 180px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
   text-align: center;
   border-radius: 9999px;
   border-style: none;
+  margin: 5px;
 }
 
 .mainButton:hover {
@@ -93,15 +103,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 25px;
+  max-width: 300px;
 }
 
 .mintAreaLeft {
-  margin-left: 5%;
   opacity: 0.75;
 }
 
 .mintAreaRight {
-  margin-right: 5%;
   opacity: 0.75;
 }
 
@@ -113,10 +123,51 @@
   margin-bottom: 16px;
 }
 
-.buttonGapTop {
+.logo {
   cursor: pointer;
-  margin-top: 32px;
+  margin-bottom: 32px;
+  padding: 10px;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 50px;
+}
+
+.customfield {
+  font-size: 14px;
+  position: relative;
+  border-bottom: 1px solid white;
+  outline: 2px solid transparent;
+  margin: 5px;
+}
+
+.customfield input {
+  background: transparent;
+  border: 2px transparent;
+  border-bottom: #fff;
+  padding: 12px;
+  width: 220px;
+  font-size: 16px;
+  color: #fff;
+  outline: 2px solid transparent;
+}
+
+.customfield .placeholder {
+  position: absolute;
+  left: 12px;
+  bottom: 50%;
+  top: 22px;  
+  transform: translateY(-50%);
+  width: calc(100% - 24px);  
+  color: #aaa;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 
 .quantityContainer {
   display: flex;
