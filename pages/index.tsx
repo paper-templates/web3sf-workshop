@@ -20,7 +20,7 @@ const myEditionDropContractAddress ="0xf91A07063BDA1458Cb5B327AbeDb31E2666A56Cd"
 const contractID = "9ad25f08-b313-43ce-b539-1d5c72933b0a"
 
 enum CheckoutPage {
-  CHOOSE_WALLET = "CHOOSE_WALLET",
+  CREATE_WALLET = "CREATE_WALLET",
   CHOOSE_PAYMENT_METHOD = "CHOOSE_PAYMENT_METHOD",
   CHECKOUT_WITH_CARD = "CHECKOUT_WITH_CARD",
   CHECKOUT_WITH_ETH = "CHECKOUT_WITH_ETH",
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
   // The user's wallet address
   const [recipientWalletAddress, setRecipientWalletAddress] = useState("");
 
-  const [currentPage, setCurrentPage] = useState(CheckoutPage.CHOOSE_WALLET);
+  const [currentPage, setCurrentPage] = useState(CheckoutPage.CREATE_WALLET);
 
   const [email, setEmail] = useState('');
 
@@ -103,8 +103,8 @@ const Home: NextPage = () => {
 
           {(() => {
             switch (currentPage) {
-              case CheckoutPage.CHOOSE_WALLET:
-                return <ChooseWalletPage setRecipientWalletAddress={setRecipientWalletAddress} setCurrentPage={setCurrentPage} setEmail={setEmail} email={email}/>;
+              case CheckoutPage.CREATE_WALLET:
+                return <CreateWalletPage setRecipientWalletAddress={setRecipientWalletAddress} setCurrentPage={setCurrentPage} setEmail={setEmail} email={email}/>;
               case CheckoutPage.CHOOSE_PAYMENT_METHOD:
                 return <ChoosePaymentMethodPage setCurrentPage={setCurrentPage}/>;
               case CheckoutPage.CHECKOUT_WITH_CARD:
@@ -143,8 +143,8 @@ const fetchClientSecret = async (
   }
 };
 
-// choose wallet page
-const ChooseWalletPage = (props: {setRecipientWalletAddress: (walletAddress: string) => void, setCurrentPage: (page: CheckoutPage) => void, setEmail: (e: string) => void, email: string}) => {
+// create wallet page
+const CreateWalletPage = (props: {setRecipientWalletAddress: (walletAddress: string) => void, setCurrentPage: (page: CheckoutPage) => void, setEmail: (e: string) => void, email: string}) => {
   const setRecipientWalletAddress = props.setRecipientWalletAddress;
   const setCurrentPage = props.setCurrentPage;
   const setEmail = props.setEmail;
@@ -254,7 +254,7 @@ const CheckoutWithEthPage = (props: {recipientWalletAddress: string, setCurrentP
   )
 }
 
-// pay with crypto page
+// payment complete page
 const PaymentCompletePage = () => {
   return (
     <div>

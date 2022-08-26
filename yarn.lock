@@ -1797,10 +1797,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@paperxyz/react-client-sdk@^0.7.2":
-  "integrity" "sha512-yLiShwzcV97poQXXtTN9n24sBOnydj8oEhGkI0Z1QVwRDTk8HyTZqGeR7w8Bsw5WUt/BxjgUab6e0Af7X2J0Pw=="
-  "resolved" "https://registry.npmjs.org/@paperxyz/react-client-sdk/-/react-client-sdk-0.7.2.tgz"
-  "version" "0.7.2"
+"@paperxyz/react-client-sdk@^0.7.4":
+  "integrity" "sha512-Lmizn5cNv8X4TgRqvWxerwmUDHvRuIEWHJX8i3MzBdXzGuSQO8jUTv0yhK/KQErS5fTSeML+U/wYMWCcQfOTpw=="
+  "resolved" "https://registry.npmjs.org/@paperxyz/react-client-sdk/-/react-client-sdk-0.7.4.tgz"
+  "version" "0.7.4"
   dependencies:
     "@headlessui/react" "^1.6.6"
     "ethers" ">=5"
