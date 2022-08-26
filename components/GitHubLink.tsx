@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ThirdwebGuideFooter() {
+export default function Footer() {
   const url = "https://github.com/thirdweb-example/edition-drop";
   return (
     <>

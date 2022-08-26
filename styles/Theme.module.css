@@ -107,14 +107,6 @@
   max-width: 300px;
 }
 
-.mintAreaLeft {
-  opacity: 0.75;
-}
-
-.mintAreaRight {
-  opacity: 0.75;
-}
-
 .spacerTop {
   margin-top: 16px;
 }
@@ -148,7 +140,7 @@
   background: transparent;
   border: 2px transparent;
   border-bottom: #fff;
-  padding: 12px;
+  padding: 5px;
   width: 220px;
   font-size: 16px;
   color: #fff;
@@ -168,10 +160,13 @@
   text-overflow: ellipsis;
 }
 
+.verifyEmail {
+  max-height: 20px;;
+}
 
-.quantityContainer {
+.emailContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10%;
@@ -186,21 +181,6 @@
   height: 48px;
   padding: 0 16px;
   font-size: 1rem;
-}
-
-.quantityControlButton {
-  cursor: pointer;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  font-size: 2rem;
-  background-color: transparent;
-  border: 1px solid grey;
-  color: #fff;
-}
-
-.quantityControlButton:disabled {
-  opacity: 0.25;
 }
 
 /* On mobile, make the .mintInfoContainer stack vertically */

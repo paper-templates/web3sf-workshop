@@ -1,20 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import {
-  ChainId,
   useContractMetadata,
-  useNetwork,
   useActiveClaimCondition,
   useEditionDrop,
   useNFT,
   ThirdwebNftMedia,
-  useAddress,
-  useMetamask,
-  useNetworkMismatch,
-  useClaimNFT,
 } from "@thirdweb-dev/react";
 import { PaperSDKProvider, CheckoutWithCard, CheckoutWithEth, CreateWallet, PaperUser } from "@paperxyz/react-client-sdk";
 import { BigNumber } from "ethers";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import styles from "../styles/Theme.module.css";
 import "@paperxyz/react-client-sdk/dist/index.css";
@@ -35,10 +29,6 @@ enum CheckoutPage {
 
 const Home: NextPage = () => {
   const editionDrop = useEditionDrop(myEditionDropContractAddress);
-  const address = useAddress();
-  const connectWithMetamask = useMetamask();
-  const isOnWrongNetwork = useNetworkMismatch();
-  const [, switchNetwork] = useNetwork();
 
   // The user's wallet address
   const [recipientWalletAddress, setRecipientWalletAddress] = useState("");
@@ -134,6 +124,24 @@ const Home: NextPage = () => {
 
 export default Home;
 
+const fetchClientSecret = async (
+  contractID: string,
+  recipientWalletAddress: string,
+  email: string
+) => {
+  try {
+    const clientSecretResp = await fetch("/api/create-client-secret", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ contractID, recipientWalletAddress, email }),
+    });
+    return (await clientSecretResp.json()).clientSecret;
+  } catch (e) {
+    console.log("error fetching the client secret", e);
+  }
+};
 
 // choose wallet page
 const ChooseWalletPage = (props: {setRecipientWalletAddress: (walletAddress: string) => void, setCurrentPage: (page: CheckoutPage) => void, setEmail: (e: string) => void, email: string}) => {
@@ -143,8 +151,8 @@ const ChooseWalletPage = (props: {setRecipientWalletAddress: (walletAddress: str
   const email = props.email;
 
   return (
-    <div>
-      <p className={styles.spacerBottom}>Please enter your email below:</p> 
+    <div className={styles.emailContainer}>
+      <p >Please enter your email below:</p> 
       <label className={styles.customfield}>
         <input type="email" value={email} onChange={(e) => {setEmail(e.target.value)}}/>
         <span className={styles.placeholder}>Enter Email</span>
@@ -183,20 +191,15 @@ const CheckoutWithCardPage = (props: {recipientWalletAddress: string, setCurrent
   const recipientWalletAddress = props.recipientWalletAddress;
   const setCurrentPage = props.setCurrentPage
   const email = props.email
-
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
-    const fetchClientSecret = async () => {
-      const clientSecret_ =await fetch('/api/create-client-secret', {
-        method: 'POST', 
-        body: {contractId, recpeintWalletAddres, email}
-      })
-      setClientSecret(clientSecret_);
-    }
-
-    fetchClientSecret()
-  }, [email, recipientWalletAddress])
+    fetchClientSecret(contractID, recipientWalletAddress, email).then(
+      (clientSecret) => {
+        setClientSecret(clientSecret);
+      }
+    );
+  }, [email, recipientWalletAddress]);
 
   return (
     <div>
@@ -222,17 +225,15 @@ const CheckoutWithEthPage = (props: {recipientWalletAddress: string, setCurrentP
   const recipientWalletAddress = props.recipientWalletAddress;
   const setCurrentPage = props.setCurrentPage
   const email = props.email
-
-  const [clientSecret, setClientSecret] = useState('');
+  const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    const fetchClientSecret = async () => {
-      const clientSecret_ = await getClientSecret(recipientWalletAddress, email)
-      setClientSecret(clientSecret_);
-    }
-
-    fetchClientSecret()
-  }, [email, recipientWalletAddress])
+    fetchClientSecret(contractID, recipientWalletAddress, email).then(
+      (clientSecret) => {
+        setClientSecret(clientSecret);
+      }
+    );
+  }, [email, recipientWalletAddress]);
 
   return (
     <div>
@@ -257,7 +258,11 @@ const CheckoutWithEthPage = (props: {recipientWalletAddress: string, setCurrentP
 const PaymentCompletePage = () => {
   return (
     <div>
-      <p className={styles.spacerBottom}>Thanks for claiming the Paper x Web3SF NFT! Hope you enjoyed our workshop and learned how to 10x your paying customers with Web2.5. Click the button below to view your Paper Wallet and view your NFT.</p>
+      <p className={styles.spacerBottom}>
+        Thanks for claiming the Paper x Web3SF NFT! Hope you enjoyed our 
+        workshop and learned how to 10x your paying customers with Web2.5. Click 
+        the button below to view your Paper Wallet and view your NFT.
+      </p>
       <button className={styles.mainButton}>
         <a href="https://paper.xyz/wallet" target="_blank" rel="noreferrer">
           Paper Wallet
