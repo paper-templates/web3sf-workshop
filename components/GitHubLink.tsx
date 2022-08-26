@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Footer() {
-  const url = "https://github.com/thirdweb-example/edition-drop";
+  const url = "https://github.com/paperxyz/workshops";
   return (
     <>
       <div
