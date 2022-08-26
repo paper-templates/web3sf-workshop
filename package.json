@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@paperxyz/react-client-sdk": "^0.6.6",
+    "@paperxyz/react-client-sdk": "^0.7.2",
     "@thirdweb-dev/react": "^2",
     "@thirdweb-dev/sdk": "^2",
     "ethers": "^5.6.8",
